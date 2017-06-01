@@ -99,7 +99,7 @@
 		</div>
 		<?php
             // udskriv debug informationer
-            print_debug_info();
+            //print_debug_info();
 		?>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
