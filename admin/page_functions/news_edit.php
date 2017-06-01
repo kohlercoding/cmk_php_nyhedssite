@@ -97,6 +97,9 @@
         <div class="form-group ">
             <label for="news_content">Nyheds Tekst</label>
             <textarea class="form-control" name="news_content" id="news_content" placeholder="Nyheds Tekst" rows="10" required><?php echo $news_content; ?></textarea>
+            <script>
+                CKEDITOR.replace('news_content');
+            </script>
         </div>
         <div class="form-group">
             <label for="category_id">Kategori</label>

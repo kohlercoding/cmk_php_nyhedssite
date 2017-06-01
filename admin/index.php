@@ -52,6 +52,7 @@
 		<link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/slate/bootstrap.min.css" rel="stylesheet">
 		<!-- Særlige styles der overskriver Bootstrap -->
 		<link href="../assets/css/backend.css" rel="stylesheet" type="text/css" />
+        <script src="../assets/ckeditor/ckeditor.js"></script>
 	</head>
 	<body>
 		<div class="container">
