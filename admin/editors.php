@@ -3,15 +3,40 @@
     // til database, sessions og al design osv...
     // skulle det ske at nogen prøvede at åbne filen direkte,
     // så indlæses siden korrekt med en header-location
-	$query = "";
-    // if ( !isset($database_link))
-    // {
-    //     die(header('location: index.php?page=editors'));
-    // }
+    if ( !isset($database_link))
+    {
+        die(header('location: index.php?page=editors'));
+    }
 ?>
 
 <h2>Redaktør Administration</h2>
-<div class="panel panel-info">
+<?php 
+	if(isset($_POST['choose'])) {
+		$_SESSION['category_id'] = $_POST['category_id'];
+	}
+	if(isset($_SESSION['category_id'])) {
+		$category_id = $_SESSION['category_id'];
+	}
+?>
+<form class="form-inline" method="post">
+	<div class="form-group">
+		<select class="form-control" name="category_id">
+			<?php 
+				$query = "SELECT * FROM categories";
+				$result = mysqli_query($database_link, $query);
+				while($row = mysqli_fetch_assoc($result)):
+			?>
+			<option value="<?= $row['category_id']; ?>"><?= $row['category_title']; ?></option>
+			<?php
+				endwhile;
+			?>
+		</select>
+	</div>
+	<div class="form-group">
+		<input type="submit" class="btn btn-primary" name="choose" value="Vælg">
+	</div>
+</form>
+<!-- <div class="panel panel-info">
 	<p class="panel-heading">
 		Dette skal du lave :)
 	</p>
@@ -26,27 +51,36 @@
 
 		</ul>
 	</div>
-</div>
-<h3>Ikke Redaktører</h3>
-<select class="form-control" name="not_editor[]" multiple="multiple" size="20">
-    <?php
-        $query = "SELECT user_id, user_name FROM users WHERE user_id NOT IN (SELECT fk_users_id FROM category_editors WHERE fk_categories_id = '$category_id') AND fk_roles_id = 3";// 3 == redaktør
-        $result = mysqli_query($database_link, $query) or die(mysqli_error($database_link));
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            echo '<option value="'.$row['user_id'].'">'.$row['user_name'].'</option>';
-        }
-    ?>
-</select>
-<h3>Redaktører</h3>
-<select class="form-control" name="is_editor[]" multiple="multiple" size="20">
-    <?php
-        $query = "SELECT user_id, user_name FROM users INNER JOIN category_editors ON fk_users_id = user_id WHERE fk_categories_id = $category_id AND fk_roles_id = 3";// 3 == redaktør
-        $result = mysqli_query($database_link, $query) or die(mysqli_error($database_link));
-        while ($row = mysqli_fetch_assoc($result))
-        {
-            echo '<option value="'.$row['user_id'].'">'.$row['user_name'].'</option>';
-        }
-    ?>
-</select>
+</div> -->
+<form>
+	<div class="col-md-5">
+		<h3>Ikke Redaktører</h3>
+		<select class="form-control" name="not_editor[]" multiple="multiple" size="20">
+			<?php 
+				$query = "SELECT user_id, user_name FROM users WHERE user_id NOT IN (SELECT fk_users_id FROM category_editors WHERE fk_categories_id = '$category_id') AND fk_roles_id = 3";// 3 == redaktør
+				$result = mysqli_query($database_link, $query) or die(mysqli_error($database_link));
+				while ($row = mysqli_fetch_assoc($result))
+				{
+					echo '<option value="'.$row['user_id'].'">'.$row['user_name'].'</option>';
+				}
+			?>
+		</select>
+	</div>
+	<div class="col-md-2">
+		
+	</div>
+	<div class="col-md-5">
+		<h3>Redaktører</h3>
+		<select class="form-control" name="is_editor[]" multiple="multiple" size="20">
+			<?php
+				$query = "SELECT user_id, user_name FROM users INNER JOIN category_editors ON fk_users_id = user_id WHERE fk_categories_id = $category_id AND fk_roles_id = 3";// 3 == redaktør
+				$result = mysqli_query($database_link, $query) or die(mysqli_error($database_link));
+				while ($row = mysqli_fetch_assoc($result))
+				{
+					echo '<option value="'.$row['user_id'].'">'.$row['user_name'].'</option>';
+				}
+			?>
+		</select>
+	</div>
+</form>
 
