@@ -28,6 +28,15 @@
         // link til redaktør admin
         $active = ($page_backend == 'editors.php' ? ' class="active"' : '');
         echo '<li'.$active.'><a href="index.php?page=editors">Redaktører</a></li>';
+    } elseif($_SESSION['user']['role_access'] <= 10)
+    {
+        // link til admin forsiden
+        $active = ($page_backend == 'backend.php' ? ' class="active"' : '');
+        echo '<li'.$active.'><a href="index.php">Admin</a></li>';
+
+        // link til kategori admin siden
+        $active = ($page_backend == 'categories.php' ? ' class="active"' : '');
+        echo '<li'.$active.'><a href="index.php?page=categories">Kategorier</a></li>';
     }
 
     // link til logud
@@ -43,7 +52,7 @@
     // 			kun har adgang til de kategorier, som brugeren er sat til at
     // 			være redaktør for.
     // udskriv links til at administrere hver enkelt nyheds kategori . . . .
-    if ($_SESSION['user']['role_access'] >= 10)
+    if ($_SESSION['user']['role_access'] > 10)
     {
         echo '<ul class="nav nav-pills nav-stacked">';
         echo '<li><h2>Nyheds Kategori</h2></li>';
@@ -51,6 +60,26 @@
         $query = "  SELECT category_id, category_title
 					FROM categories
 					ORDER BY category_title ASC";
+        $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+        while ($category = mysqli_fetch_assoc($result))
+        {
+            // hvis vi er på news siden, og der står en kategori id i url, og den
+            // kategori er magen til den kategori id der udskrives lige nu sættes
+            // menupunktet til aktiv.
+            $active = ($page_backend == 'news.php' && isset($_GET['category_id']) && $_GET['category_id'] == $category['category_id'] ? ' class="active"' : '');
+            echo '<li'.$active.'><a href="index.php?page=news&amp;category_id='.$category['category_id'].'">'.$category['category_title'].'</a></li>';
+        }
+        echo '</ul><br />';
+    } elseif($_SESSION['user']['role_access'] <= 10)
+    {
+        $uid = $_SESSION['user']['user_id'];
+        echo '<ul class="nav nav-pills nav-stacked">';
+        echo '<li><h2>Nyheds Kategori</h2></li>';
+
+        $query = "  SELECT category_id, category_title
+                    FROM categories
+                    INNER JOIN category_editors ON category_editors.fk_users_id = $uid
+                    ORDER BY category_title ASC";
         $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
         while ($category = mysqli_fetch_assoc($result))
         {

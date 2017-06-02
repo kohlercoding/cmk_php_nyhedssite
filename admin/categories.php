@@ -8,6 +8,16 @@
         die(header('location: index.php?page=categories'));
     }
 
+    // tjek for om brugeren er redaktør, hvis den er så tjek for om der er rettigheder til kategorien
+    if($_SESSION['user']['role_access'] === 10)
+    {
+        $uid = $_SESSION['user']['user_id'];
+        $cid = $_GET['category_id'];
+        $permcheck = mysqli_query($database_link, "SELECT * FROM category_editors WHERE fk_users_id='$uid' AND fk_category_id='$cid'");
+        if(mysqli_num_rows($permcheck) < 1) {
+            header("Location: index.php");
+        }
+    }
     /****************************************************************************
      * DIN OPGAVE!
      *
