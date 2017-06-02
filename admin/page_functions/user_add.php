@@ -69,11 +69,14 @@
         // hvis alle felterne er i orden, så indsættes der i databasen
         if ($form_ok)
         {
+            // kryptér $user_password for sikkerhed med password_hash() og BCRYPT som gør hash'et altid vil være 60 tegn
+            $encpass = password_hash($user_password, PASSWORD_BCRYPT);
+
             $query = "
 				INSERT INTO users 
 					(user_name, user_email, user_password, fk_roles_id) 
 				VALUES 
-					('$user_name','$user_email', '$user_password','$role_id')";
+					('$user_name','$user_email', '$encpass','$role_id')";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
             // hvis det lykkes at indsætte i databasen,
             // så genindlæs kategori liste

@@ -22,8 +22,7 @@
         $query = "  SELECT user_id, user_name, user_email, role_access
                     FROM users
                     INNER JOIN roles ON role_id = users.fk_roles_id
-                    WHERE user_email = '$email'
-                    AND user_password = '$password'";
+                    WHERE user_email = '$email'";
         $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
         // hvis der ikke er EN række i udtrækket, vises en fejlbesked
         if (mysqli_num_rows($result) <> 1)
@@ -32,10 +31,14 @@
         }
         else
         {
-            // hvis der er EN række, gemmes alt sammen i session['user']
-            $_SESSION['user'] = mysqli_fetch_assoc($result);
-            // og brugeren sendes til forsiden
-            die(header('location: index.php'));
+            $passchk = array_values(mysqli_fetch_array(mysqli_query($database_link, "SELECT user_password FROM users WHERE user_email ='$email' LIMIT 1")));
+            $passchk = $passchk[0];
+            if(password_verify($password, $passchk)) {
+                // hvis der er EN række, gemmes alt sammen i session['user']
+                $_SESSION['user'] = mysqli_fetch_assoc($result);
+                // og brugeren sendes til forsiden
+                die(header('location: index.php'));
+            }
         }
     }
 

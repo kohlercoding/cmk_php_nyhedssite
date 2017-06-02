@@ -37,18 +37,18 @@
 	</li>
 
 	<li>
-		<h4>Nyheder</h4>
+		<h4><s>Nyheder</s></h4>
 		<ul>
 			<li>
-				Indsæt en RichTextBox editor på <a href="index.php?page=news&amp;category_id=1">nyheds</a> administrationen
+				<s>Indsæt en RichTextBox editor på <a href="index.php?page=news&amp;category_id=1">nyheds</a> administrationen</s>
 			</li>
 		</ul>
 	</li>
 	<li>
-		<h4>Brugere</h4>
+		<h4><s>Brugere</s></h4>
 		<ul>
 			<li>
-				<a href="index.php?page=users">Brugernes</a> kodeord skal sikres i databasen med en <strong>HASH</strong> og <strong>SALT</strong>
+				<s><a href="index.php?page=users">Brugernes</a> kodeord skal sikres i databasen med en <strong>HASH</strong> og <strong>SALT</strong></s>
 			</li>
 		</ul>
 	</li>

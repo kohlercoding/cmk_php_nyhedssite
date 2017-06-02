@@ -95,7 +95,11 @@
                 // dette kan også ændres så det gøres sammen med resten
                 if ($user_password != '')
                 {
-                    $query = "UPDATE users SET user_password = '$user_password' WHERE user_id = '$user_id'";
+                    // kryptér $user_password for sikkerhed med password_hash() og BCRYPT som gør hash'et altid vil være 60 tegn
+                    $encpass = password_hash($user_password, PASSWORD_BCRYPT);
+
+
+                    $query = "UPDATE users SET user_password = '$encpass' WHERE user_id = '$user_id'";
                     $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
                     // hvis det lykkes at opdatere brugeren, så genindlæs bruger
                     // listen
