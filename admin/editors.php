@@ -52,7 +52,7 @@
 		</ul>
 	</div>
 </div> -->
-<form>
+<form method="post">
 	<div class="col-md-5">
 		<h3>Ikke Redaktører</h3>
 		<select class="form-control" name="not_editor[]" multiple="multiple" size="20">
@@ -67,7 +67,11 @@
 		</select>
 	</div>
 	<div class="col-md-2">
-		
+		<div class="form-group">
+			<button type="submit" name="editors" class="btn btn-lg btn-success">
+				<span class="glyphicon glyphicon-refresh"></span>
+			</button>
+		</div>
 	</div>
 	<div class="col-md-5">
 		<h3>Redaktører</h3>
