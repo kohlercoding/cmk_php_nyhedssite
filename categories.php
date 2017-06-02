@@ -18,13 +18,21 @@
     {
         // når der ER en category id i URL'en, så hent nyhederne fra kategorien.
         // Husk lige at sikre at id'en er et TAL (ved at gange med 1))
+        $news_pr_page = 5;
+        $current_page = 1;
+        if (isset($_GET['pagenr']) && is_int($_GET['pagenr'] * 1))
+        {
+            $current_page = ($_GET['pagenr'] * 1);
+        }
         $category_id = ($_GET['category_id'] * 1);
-        $query = "  SELECT news_id, news_title, news_content, news_postdate, user_name
+        $offset = ($current_page - 1) * $news_pr_page;
+        $query = "SELECT news_id, news_title, news_content, news_postdate, user_name
                     FROM news
                     INNER JOIN categories ON category_id = news.fk_categories_id
-                    INNER JOIN users ON user_id = news.fk_users_id 
+                    INNER JOIN users ON user_id = news.fk_users_id
                     WHERE news.fk_categories_id = $category_id
-                    ORDER BY news_postdate DESC";
+                    ORDER BY news_postdate DESC
+                    LIMIT $news_pr_page OFFSET $offset";
         $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
 
         if (mysqli_num_rows($result) <= 0)
@@ -58,6 +66,22 @@
                             <em>'.$user_name.' - '.$news_postdate.'</em><hr />
                         </section>';
             }
+
+
+            $query = "SELECT COUNT(news_id) AS antal FROM news WHERE fk_categories_id = '$category_id'";
+            $result = mysqli_query($database_link, $query) or die;
+            $row = mysqli_fetch_assoc($result);
+            $news_in_category = $row['antal'];
+            $total_pages = ceil($news_in_category / $news_pr_page);
+
+            echo '<ul class="pagination">';
+            for ($i = 1; $i <= $total_pages; $i++)
+            {
+                $active = ($current_page == $i ? 'class="active"' : '');
+                $href = "?page=categories&category_id=$category_id&amp;pagenr=$i";
+                echo "<li $active><a href='$href'>$i</a></li>";
+            }
+            echo '</ul>';
 
             // breadcrumbs / krummesti
             // her er det nødvendigt at hente kategoriens titel fra databasen
