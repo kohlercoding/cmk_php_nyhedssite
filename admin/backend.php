@@ -25,13 +25,13 @@
 		</ul>
 	</li>
 	<li>
-		<h4>Når en <a href="index.php?page=editors">redaktør</a> logger på</h4>
+		<h4><s>Når en <a href="index.php?page=editors">redaktør</a> logger på</s></h4>
 		<ul>
 			<li>
-				<strong>Nyheds Kategori Menuen</strong> skal afgrænses, til kun at vise de <a href="index.php?page=categories">kategorier</a>&nbsp;<a href="index.php?page=editors">redaktøren</a> har adgang til.
+				<s><strong>Nyheds Kategori Menuen</strong> skal afgrænses, til kun at vise de <a href="index.php?page=categories">kategorier</a>&nbsp;<a href="index.php?page=editors">redaktøren</a> har adgang til.</s>
 			</li>
 			<li>
-				På <a href="index.php?page=news&amp;category_id=1">nyheds</a> admin siden, skal der tjekkes på om <a href="index.php?page=editors">redaktøren</a> har rettighed, til at administrere <a href="index.php?page=news&amp;category_id=1">nyhederne</a> i den pågældende <a href="index.php?page=categories">kategori</a>.
+				<s>På <a href="index.php?page=news&amp;category_id=1">nyheds</a> admin siden, skal der tjekkes på om <a href="index.php?page=editors">redaktøren</a> har rettighed, til at administrere <a href="index.php?page=news&amp;category_id=1">nyhederne</a> i den pågældende <a href="index.php?page=categories">kategori</a>.</s>
 			</li>
 		</ul>
 	</li>
@@ -64,7 +64,7 @@
 		</ul>
 	</li>
 	<li>
-		<h4>Frontend specifikke opgaver:</h4>
+		<h4><s>Frontend specifikke opgaver:</s></h4>
 		<ul>
 			<li>
 				<s>På frontend, skal der oprettes <strong>Paging</strong> under hver <a href="index.php?page=categories">kategori</a>, så der vises 5 nyheder pr side, og man kan bladre rundt imellem siderne i <a href="index.php?page=categories">kategorien</a></s>.
