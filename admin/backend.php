@@ -67,10 +67,10 @@
 		<h4>Frontend specifikke opgaver:</h4>
 		<ul>
 			<li>
-				På frontend, skal der oprettes <strong>Paging</strong> under hver <a href="index.php?page=categories">kategori</a>, så der vises 5 nyheder pr side, og man kan bladre rundt imellem siderne i <a href="index.php?page=categories">kategorien</a>.
+				<s>På frontend, skal der oprettes <strong>Paging</strong> under hver <a href="index.php?page=categories">kategori</a>, så der vises 5 nyheder pr side, og man kan bladre rundt imellem siderne i <a href="index.php?page=categories">kategorien</a></s>.
 			</li>
 			<li>
-				Der skal oprettes et link til <a href="index.php?page=categories">kategoriens</a> RSS feed, under hver <a href="index.php?page=categories">kategori</a> (skal selvfølgelig først lave RSS feed delen!)
+				<s>Der skal oprettes et link til <a href="index.php?page=categories">kategoriens</a> RSS feed, under hver <a href="index.php?page=categories">kategori</a> (skal selvfølgelig først lave RSS feed delen!)</s>
 			</li>
 		</ul>
 	</li>
