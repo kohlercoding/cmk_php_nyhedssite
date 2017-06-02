@@ -39,6 +39,7 @@
         // hent værdier fra formularen, husk at 'escape'
         $news_title = mysqli_real_escape_string($database_link, $_POST['news_title']);
         $news_content = mysqli_real_escape_string($database_link, $_POST['news_content']);
+        $category_id = mysqli_real_escape_string($database_link, $_POST['category_id']);
 
         // valider om felterne opfylder de krav der måtte være
         // udskriv en fejl, hvis et af felterne fejler
@@ -113,7 +114,7 @@
                         while ($row = mysqli_fetch_assoc($result))
                         {
                             $selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
-                            echo '<option value="'.$row['fk_categories_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
+                            echo '<option value="'.$row['category_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
                         }
                     }
                 ?>

@@ -90,7 +90,7 @@
                         while ($row = mysqli_fetch_assoc($result))
                         {
                             $selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
-                            echo '<option value="'.$row['fk_categories_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
+                            echo '<option value="'.$row['categories_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
                         }
                     }
                 ?>
