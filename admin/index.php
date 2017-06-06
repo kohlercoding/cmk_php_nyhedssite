@@ -53,6 +53,12 @@
 		<!-- Særlige styles der overskriver Bootstrap -->
 		<link href="../assets/css/backend.css" rel="stylesheet" type="text/css" />
         <script src="../assets/ckeditor/ckeditor.js"></script>
+        <style>
+            .flex-row {
+                display: flex !important;
+                align-items: center !important;
+            }
+        </style>
 	</head>
 	<body>
 		<div class="container">
