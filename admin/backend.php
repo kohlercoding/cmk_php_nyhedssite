@@ -14,13 +14,13 @@
 <h3>Oversigt over hvad du skal lave:</h3>
 <ul>
 	<li>
-		<h4><a href="index.php?page=editors">Redaktør</a> administrationen skal laves</h4>
+		<h4><s><a href="index.php?page=editors">Redaktør</a> administrationen skal laves</s></h4>
 		<ul>
 			<li>
-				En <a href="index.php?page=editors">redaktør</a> skal kunne tilføjes som <a href="index.php?page=editors">redaktøren</a> til en eller flere <a href="index.php?page=categories">kategorier</a>.
+				<s>En <a href="index.php?page=editors">redaktør</a> skal kunne tilføjes som <a href="index.php?page=editors">redaktøren</a> til en eller flere <a href="index.php?page=categories">kategorier</a>.</s>
 			</li>
 			<li>
-				En <a href="index.php?page=editors">redaktør</a> skal kunne fjernes fra valgte <a href="index.php?page=categories">kategorier</a>.
+				<s>En <a href="index.php?page=editors">redaktør</a> skal kunne fjernes fra valgte <a href="index.php?page=categories">kategorier</a>.</s>
 			</li>
 		</ul>
 	</li>
