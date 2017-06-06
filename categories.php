@@ -1,4 +1,4 @@
-<?php
+ <?php
     // denne fil inkluderes fra index.php, så der er allerede hul igennem
     // til database, sessions og al design osv...
     // skulle det ske at nogen prøvede at åbne filen direkte,
@@ -88,7 +88,7 @@
             // (der kunne sikkert laves noget smart ved at gemme kategorinavnet
             // mens menuen udskrives, for at spare dette SQL kald)
             $query = "  SELECT category_title
-                        FROM categories 
+                        FROM categories
                         WHERE category_id = $category_id";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
             $row = mysqli_fetch_assoc($result);
