@@ -25,8 +25,9 @@
 				$query = "SELECT * FROM categories";
 				$result = mysqli_query($database_link, $query);
 				while($row = mysqli_fetch_assoc($result)):
+				$selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
 			?>
-			<option value="<?= $row['category_id']; ?>"><?= $row['category_title']; ?></option>
+			<option value="<?= $row['category_id']; ?>" <?= $selected; ?>><?= $row['category_title']; ?></option>
 			<?php
 				endwhile;
 			?>
@@ -52,7 +53,31 @@
 		</ul>
 	</div>
 </div> -->
-<form method="post">
+<?php 
+	if(isset($_POST['editors'])) {
+		if (isset($_POST['not_editor']) && is_array($_POST['not_editor']))
+		{
+			foreach ($_POST['not_editor'] as $user)
+			{
+				$user = ($user * 1); // quick int convertion
+				$query = "INSERT INTO category_editors VALUES($user, $category_id )";
+				mysqli_query($database_link, $query) or die(mysqli_error($database_link));
+			}
+		}
+		if (isset($_POST['is_editor']) && is_array($_POST['is_editor']))
+		{
+			foreach ($_POST['is_editor'] as $user)
+			{
+				$user = ($user * 1); // quick int convertion
+				$query = "  DELETE FROM category_editors
+							WHERE fk_users_id = $user
+							AND fk_categories_id = $category_id";
+				mysqli_query($database_link, $query) or die(mysqli_error($database_link));
+			}
+		}
+	}
+?>
+<form method="post" class="row flex-row">
 	<div class="col-md-5">
 		<h3>Ikke Redaktører</h3>
 		<select class="form-control" name="not_editor[]" multiple="multiple" size="20">
@@ -67,8 +92,9 @@
 		</select>
 	</div>
 	<div class="col-md-2">
+		<h3></h3>
 		<div class="form-group">
-			<button type="submit" name="editors" class="btn btn-lg btn-success">
+			<button type="submit" name="editors" class="btn btn-lg btn-block btn-success">
 				<span class="glyphicon glyphicon-refresh"></span>
 			</button>
 		</div>
