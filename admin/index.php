@@ -5,7 +5,7 @@
     // start session, så vi kan holde styr på hvem der er logget på
     session_start();
     // under udviklingen af siden, sættes error_reporting til E_ALL
-    // så kommer alle advarsler og beskeder frem på skærmen  
+    // så kommer alle advarsler og beskeder frem på skærmen
     error_reporting(E_ALL);
     // åben forbindelsen til databsen
     require_once ('../assets/database_connection.php');
@@ -18,23 +18,23 @@
     if ( !isset($_SESSION['user']))
     {
         die('<p class="alert alert-danger">
-                 <strong>ADVARSEL</strong> du skal v&aelig;re logget p&aring;, for at se denne side.  
+                 <strong>ADVARSEL</strong> du skal v&aelig;re logget p&aring;, for at se denne side.
                  <a href="../index.php?page=login" class="btn btn-primary">G&aring; til Login</a>
              </p>');
     }
 
-    // rolle rettigheder er sat sådan op, at 
+    // rolle rettigheder er sat sådan op, at
     // man skal have rettighed niveau 10 eller derover
     // for at få adgang til redaktør funktionerne,
     // som her ligger på admin siden
     if ($_SESSION['user']['role_access'] < 10)
     {
         die('<p class="alert alert-danger">
-                 <strong>ADVARSEL</strong> du v&aelig;re moderator eller administrator, for at se denne side.  
+                 <strong>ADVARSEL</strong> du v&aelig;re moderator eller administrator, for at se denne side.
                  <a href="../index.php?page=login" class="btn btn-primary">G&aring; til Login</a>
              </p>');
     }
-    
+
     // her sættes standard siden der vises
     $page_backend = 'backend.php';
     // her findes ud af hvilke side der vises
@@ -83,7 +83,7 @@
                         // f.eks. om noget blev indsat eller opdateret
                         if (isset($_SESSION['message']))
                         {
-                            
+
                             echo '
                             	<div class="alert alert-info alert-dismissable">
                             		<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
@@ -105,10 +105,9 @@
 		</div>
 		<?php
             // udskriv debug informationer
-            //print_debug_info();
+            print_debug_info();
 		?>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	</body>
 </html>
-
