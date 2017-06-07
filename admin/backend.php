@@ -56,10 +56,10 @@
 		<h4>RSS Feed Opgaver</h4>
 		<ul>
 			<li>
-				Når en <a href="index.php?page=news&amp;category_id=1">nyhed</a> oprettes, rettes eller slettes, skal <a href="index.php?page=categories">kategoriens</a> RSS feed opdaters
+				<s>Når en <a href="index.php?page=news&amp;category_id=1">nyhed</a> oprettes, rettes eller slettes, skal <a href="index.php?page=categories">kategoriens</a> RSS feed opdaters</s>
 			</li>
 			<li>
-				Når en <a href="index.php?page=categories">kategori</a> oprettes, rettes eller slettes, så skal den's RSS feed opdateres.
+				<s>Når en <a href="index.php?page=categories">kategori</a> oprettes, rettes eller slettes, så skal den's RSS feed opdateres.</s>
 			</li>
 		</ul>
 	</li>
