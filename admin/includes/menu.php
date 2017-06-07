@@ -70,16 +70,16 @@
             echo '<li'.$active.'><a href="index.php?page=news&amp;category_id='.$category['category_id'].'">'.$category['category_title'].'</a></li>';
         }
         echo '</ul><br />';
-    } elseif($_SESSION['user']['role_access'] <= 10)
+    } elseif($_SESSION['user']['role_access'] == 10)
     {
         $uid = $_SESSION['user']['user_id'];
         echo '<ul class="nav nav-pills nav-stacked">';
         echo '<li><h2>Nyheds Kategori</h2></li>';
 
-        $query = "  SELECT category_id, category_title
-                    FROM categories
-                    INNER JOIN category_editors ON category_editors.fk_users_id = $uid
-                    ORDER BY category_title ASC";
+        $query = "  SELECT * FROM category_editors
+                    JOIN users ON category_editors.fk_users_id=users.user_id
+                    JOIN categories ON category_editors.fk_categories_id=categories.category_id
+                    WHERE users.user_id=$uid ORDER BY category_title ASC";
         $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
         while ($category = mysqli_fetch_assoc($result))
         {
@@ -92,4 +92,3 @@
         echo '</ul><br />';
     }
 ?>
-
