@@ -36,11 +36,12 @@
         if ($form_ok)
         {
             $query = "
-				INSERT INTO categories 
-					(category_title, category_description) 
-				VALUES 
+				INSERT INTO categories
+					(category_title, category_description)
+				VALUES
 					('$category_title','$category_description')";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+            include '../feeds/feedGen.php';
             // hvis det lykkes at indsætte i databasen, så genindlæs
             // kategori liste
             if ($result)

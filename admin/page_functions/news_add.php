@@ -50,11 +50,12 @@
         if ($form_ok)
         {
             $query = "
-				INSERT INTO news 
-					(news_title, news_content, news_postdate, fk_users_id, fk_categories_id) 
-				VALUES 
+				INSERT INTO news
+					(news_title, news_content, news_postdate, fk_users_id, fk_categories_id)
+				VALUES
 					('$news_title','$news_content', NOW(), '$user_id', '$category_id')";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+            include '../feeds/feedGen.php';
             // hvis det lykkes at indsætte i databasen,
             // så genindlæs kategoriens nyheds liste
             if ($result)

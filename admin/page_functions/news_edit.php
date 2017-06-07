@@ -59,12 +59,13 @@
         if ($form_ok)
         {
             $query = "
-				UPDATE news SET 
+				UPDATE news SET
 				    news_title = '$news_title'
 				  , news_content = '$news_content'
 				  , fk_categories_id = '$category_id'
                 WHERE news_id = $news_id";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+            include '../feeds/feedGen.php';
             // hvis det lykkes at indsætte i databasen, så genindlæs
             // kategori liste
             if ($result)
