@@ -20,6 +20,13 @@
     if (isset($_GET['category_id']))
     {
         $category_id = ($_GET['category_id'] * 1);
+        if($_SESSION['user']['role_access'] === 10) {
+            $uid = $_SESSION['user']['user_id'];
+            $chrights = mysqli_query($database_link, "SELECT * FROM category_editors WHERE fk_categories_id=$category_id AND fk_users_id=$uid");
+            if(mysqli_num_rows($chrights) === 0) {
+                header("Location: index.php");
+            }
+        }
         $category_title = 'Nyheds';
         $query = "SELECT category_title FROM categories WHERE category_id = '$category_id'";
         $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
