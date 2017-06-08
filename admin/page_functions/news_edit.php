@@ -108,14 +108,30 @@
             <select class="form-control" name="category_id" id="category_id">
                 <option value="0">Vælg Kategori</option>
                 <?php
-                    $query = "SELECT category_id, category_title FROM categories ORDER BY category_title ASC";
-                    $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
-                    if (mysqli_num_rows($result) > 0)
-                    {
-                        while ($row = mysqli_fetch_assoc($result))
+                    if($_SESSION['user']['role_access'] == 10) {
+                        $query = "  SELECT * FROM category_editors
+                                    JOIN users ON category_editors.fk_users_id=users.user_id
+                                    JOIN categories ON category_editors.fk_categories_id=categories.category_id
+                                    WHERE users.user_id=$uid ORDER BY category_title ASC";
+                        $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+                        if (mysqli_num_rows($result) > 0)
                         {
-                            $selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
-                            echo '<option value="'.$row['category_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
+                                $selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
+                                echo '<option value="'.$row['category_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
+                            }
+                        }
+                    } elseif($_SESSION['user']['role_access'] > 10) {
+                        $query = "SELECT category_id, category_title FROM categories ORDER BY category_title ASC";
+                        $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
+                        if (mysqli_num_rows($result) > 0)
+                        {
+                            while ($row = mysqli_fetch_assoc($result))
+                            {
+                                $selected = ($category_id == $row['category_id'] ? ' selected="selected"' : '');
+                                echo '<option value="'.$row['category_id'].'"'.$selected.'>'.$row['category_title'].'</option>';
+                            }
                         }
                     }
                 ?>

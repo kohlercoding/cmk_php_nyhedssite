@@ -31,7 +31,7 @@
         // hvis det lykkes at slette nyheden fra databsen,
         // så indlæses kategoriens nyheds liste igen
         $_SESSION['message'] .= 'Nyheden blev slettet<br />';
-        die(header('location: index.php?page=news&category_id='.$category_id));
+        require 'feedGen.php';
     }
     else
     {

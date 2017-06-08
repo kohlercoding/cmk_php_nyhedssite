@@ -19,6 +19,14 @@
     // det er kun kategori id'en der er nødvendig
     $category_id = ($_GET['category_id'] * 1);
 
+    $result = mysqli_fetch_assoc(mysqli_query($database_link, "SELECT * FROM categories WHERE category_id = $category_id"));
+
+    $name = $result['category_title']; 
+
+    $file = "../feeds/feed_".$name.".xml";
+
+    unlink($file);
+
     $query = "DELETE FROM categories WHERE category_id = $category_id";
     // or die er fjernet og istedet udskrives fejl længere nede
     if (mysqli_query($database_link, $query))

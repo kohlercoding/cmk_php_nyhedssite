@@ -55,11 +55,11 @@
 				VALUES
 					('$news_title','$news_content', NOW(), '$user_id', '$category_id')";
             $result = mysqli_query($database_link, $query) or if_sql_error_then_die(mysqli_error($database_link), $query, __LINE__, __FILE__);
-            include '../feeds/feedGen.php';
             // hvis det lykkes at indsætte i databasen,
             // så genindlæs kategoriens nyheds liste
             if ($result)
             {
+                include '../feeds/feedGen.php';
                 $_SESSION['message'] .= 'Nyheden blev oprettet<br />';
                 die(header('location: index.php?page=news&category_id='.$category_id));
             }

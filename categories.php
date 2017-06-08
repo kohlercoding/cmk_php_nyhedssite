@@ -94,7 +94,7 @@
             $row = mysqli_fetch_assoc($result);
             echo '  <div class="bottom">
                         <ul class="breadcrumb">
-                            <li><a href="feeds/'.$row["category_title"].'.xml" title="RSS Feed" target="_blank"><i class="icon-rss"></i></a></li>
+                            <li><a href="feeds/feed_'.$row["category_title"].'.xml" title="RSS Feed" target="_blank"><i class="icon-rss"></i></a></li>
                             <li><a href="index.php?page=frontpage">Forside</a></li>
                             <li class="active">'.$row['category_title'].'</li>
                         </ul>
