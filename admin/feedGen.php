@@ -11,10 +11,10 @@ require_once ('../assets/database_connection.php');
 // hent hjælpe funktioner
 require_once ('../assets/functions.php');
 
-if(isset($_GET['cat'])) {
-  $cat_id = $_GET['cat'];
+if(isset($_GET['category_id'])) {
+  $cat_id = $_GET['category_id'];
 }else{
-  $cat_id = 1;
+  return false;
 }
 
 $rss_txt = '';
