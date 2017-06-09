@@ -59,9 +59,8 @@
             // så genindlæs kategoriens nyheds liste
             if ($result)
             {
-                include '../feeds/feedGen.php';
                 $_SESSION['message'] .= 'Nyheden blev oprettet<br />';
-                die(header('location: index.php?page=news&category_id='.$category_id));
+                include '../feeds/feedGen.php';
             }
         }
     }
